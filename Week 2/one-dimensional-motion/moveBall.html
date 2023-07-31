@@ -1,0 +1,53 @@
+<div id="ball" style="
+  z-index:5;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:green"></div>
+
+<script>
+
+var velocity = 1;
+var position = 0;
+var ball = document.getElementById('ball');
+var way = "R";
+var ballWidth = parseInt(ball.style.width);
+
+// YOUR CODE 
+// ----------------
+
+function ballPositionX ()
+{ 
+  if (way == "R" )
+  {
+  position = position + velocity;
+  ball.style.left = position + "px" ;
+    if (position >= window.innerWidth - ballWidth)
+      {
+      way = "L";
+      }
+    else
+      {
+      } 
+  }
+  else 
+  {    
+    position = position - velocity;
+    ball.style.left = position + "px" ;
+    if (position == 0)
+      {
+      way = "R";
+      }
+    else
+      {
+      } 
+
+  }
+}
+
+setInterval(ballPositionX,3)
+
+</script>

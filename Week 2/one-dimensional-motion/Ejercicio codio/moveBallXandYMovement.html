@@ -1,0 +1,92 @@
+<div id="ball" style="
+  z-index:5;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background: red"></div>
+
+<script>
+
+var ball = document.getElementById('ball');
+var Xmin = 0;
+var Xmax = window.innerWidth - parseInt(ball.style.width);
+var positionX = 0;
+var velocityX = 10;
+var positionY = 500;
+var velocityY = 10;
+
+//Realiza la obtención de un color aleatorio
+
+function getRandomColor()
+{
+  var letters = "0123456789ABCDEF";
+  var color = "#";
+  for (var i = 0; i < 6; i++)
+  {
+    color = color + letters[Math.floor(Math.random()*16)];
+  }
+  return color
+}
+//Realiza la obtención de número aleatorio para cambiar el tamaño de la bolita
+var maxSize = 400
+var minSize = 100
+//var randomSize = Math.floor(Math.random() * (maxSize - minSize)) + minSize;
+
+//Realiza el cambio de tamaño de la bolita aleatoriamente
+function modifySize ()
+{
+  var randomSize = Math.floor(Math.random() * (maxSize - minSize)) + minSize;
+  ball.style.width = randomSize + "px";
+  ball.style.height = randomSize + "px";
+  console.log(randomSize)
+}
+
+function moveBallX()
+{
+  // two fixed x-axis coordinates (you will use these variable in step 3)
+  positionX = positionX + velocityX;
+  ball.style.left = positionX + "px";
+
+  if (positionX >= Xmax)
+  {
+  velocityX = -10;
+  ball.style.backgroundColor = getRandomColor();
+  modifySize();
+  }
+  else if (positionX <= Xmin )
+  {
+  velocityX = 10;
+  ball.style.backgroundColor = getRandomColor();
+  modifySize ();
+  }
+}
+function moveBall()
+{
+  // two fixed x-axis coordinates (you will use these variable in step 3)
+  var Ymax = window.innerHeight - parseInt(ball.style.height);
+  var Ymin = 0;
+  positionY = positionY + velocityY;
+  ball.style.top = positionY + "px";
+
+  if (positionY >= Ymax ) 
+  {
+  velocityY = -10;
+  ball.style.backgroundColor = getRandomColor();
+  modifySize();
+  }
+  else if (positionY <= Ymin )
+  {
+  velocityY = 10;
+  ball.style.backgroundColor = getRandomColor();
+  modifySize();
+  }
+}
+
+// This call the moveBall function every 100ms
+setInterval(moveBall, 10);
+setInterval(moveBallX, 10);
+
+</script>
